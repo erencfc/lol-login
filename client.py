@@ -27,22 +27,3 @@ def start_client(process_name, process_path):
                     print(f"🟩 {process_name} started.")
                     found = True
                     break
-    if process_name == 'LeagueClient.exe':
-        print('🟨 Trying to close Riot Client...')
-        try:
-            found = False
-            
-            while not found:
-                for process in process_iter():
-                    if 'LeagueClientUx.exe' in process.name():
-                        found = True
-                        for p in process_iter():
-                            if 'RiotClientUx.exe' in p.name():
-                                p.kill()
-                        break
-
-            print('🟩 Successfully closed Riot Client.')
-        except Exception as e:
-            print('❗ Failed to close Riot Client.')
-            print(f'Error: {e}')
-        exit()
